@@ -1,0 +1,53 @@
+{% extends 'comprobantes/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if f %}
+    <table class="table table-sm">
+        <p style="font-size: 18px;">Factura Número:<span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
+        <thead class="table-success">
+            <!-- <th style="font-weight: 500;">Numero</th> -->
+            <th style="font-weight: 500;">Fecha</th>
+            <th style="font-weight: 500;">Razón Social</th>
+            <th style="font-weight: 500;">Importe Bruto</th>
+            <th style="font-weight: 500;">IVA</th>
+            <th style="font-weight: 500;">Importe Neto</th>
+        </thead>
+        <tbody>
+            <!-- <td style="font-size:13px;">{{ f.numero }}</td> -->
+            <td style="font-size:13px;">{{ f.fecha }}</td>
+            <td style="font-size:13px;">{{ f.razon_social }}</td>
+            <td style="font-size:13px;">{{ f.importe|floatformat:2}}</td>
+            <td style="font-size:13px;">{{ f.iva}}</td>
+            <td style="font-size:13px;">{{ f.importe_total|floatformat:2}}</td>
+       </tbody>
+    </table>   
+    {% else %}
+    <p>Factura no encontrada</p>
+    {% endif %}
+    <br>
+    {% if recibos %}
+    <table class="table table-sm">
+        <p style="font-size: 18px;">Recibos de pago de la Factura:<span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
+        <thead class="table-success">
+            <th style="font-weight: 500;">Numero</th>
+            <th style="font-weight: 500;">Fecha</th>
+            <th style="font-weight: 500;">Importe Pagado</th>
+        </thead>
+        <tbody>
+            {% for recibo in recibos %}
+            <td style="font-size:13px;">{{ recibo.numero }}</td>
+            <td style="font-size:13px;">{{ recibo.fecha }}</td>
+            <td style="font-size:13px;">{{ recibo.importe_pagado }}</td>
+       </tbody>
+            {% endfor %}
+    </table>   
+    <br>
+    <center>SALDO FINAL: $ </center>
+    {% else %}
+    <p>No hay recibo de pago de esa factura</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'comprobantes/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if facturas %}
+    <table class="table table-sm">
+        
+        <h3>Facturas de Compras</h3>
+        <thead class="table-success">
+            <th style="font-weight: 500;">Numero</th>
+            <th style="font-weight: 500;">Fecha</th>
+            <th style="font-weight: 500;">Razón Social</th>
+            <th style="font-weight: 500;">Importe Bruto</th>
+            <th style="font-weight: 500;">IVA</th>
+            <th style="font-weight: 500;">Importe Neto</th>
+            <th style="font-weight: 500;">Acciones</th>
+        </thead>
+        <tbody>
+            {% for factura in facturas %}
+            <td style="font-size:13px;">{{ factura.numero }}</td>
+            <td style="font-size:13px;">{{ factura.fecha }}</td>
+            <td style="font-size:13px;">{{ factura.razon_social }}</td>
+            <td style="font-size:13px;">{{ factura.importe|floatformat:2}}</td>
+            <td style="font-size:13px;">{{ factura.iva}}</td>
+            <td style="font-size:13px;">{{ factura.importe_total|floatformat:2}}</td>
+            <td style="font-size:13px;">
+                <a href="{% url 'recibos-factura' factura.id %}">ver pago</a>
+            </td>      
+       </tbody>
+            {% endfor %}
+    </table>   
+        
+    </div>
+    {% else %}
+    <p>No hay facturas ingresadas</p>
+    {% endif %}
+</div>
+{% endblock %}
