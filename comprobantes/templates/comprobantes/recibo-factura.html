@@ -5,15 +5,15 @@
 <div class="container">
     <br>
     {% if f %}
-    <table class="table table-sm">
-        <p style="font-size: 18px;">Factura Número:<span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
-        <thead class="table-success">
+    <table class="table table-sm table-hover">
+        <p style="font-weight: 500;font-size:15px;margin-bottom: 3px;"><span style="text-decoration: underline;">Factura Número:</span><span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
+        <thead style="background-color: bisque;">
             <!-- <th style="font-weight: 500;">Numero</th> -->
-            <th style="font-weight: 500;">Fecha</th>
-            <th style="font-weight: 500;">Razón Social</th>
-            <th style="font-weight: 500;">Importe Bruto</th>
-            <th style="font-weight: 500;">IVA</th>
-            <th style="font-weight: 500;">Importe Neto</th>
+            <th style="font-weight: 500;font-size:15px;">Fecha</th>
+            <th style="font-weight: 500;font-size:15px;">Razón Social</th>
+            <th style="font-weight: 500;font-size:15px;">Importe Bruto</th>
+            <th style="font-weight: 500;font-size:15px;">IVA</th>
+            <th style="font-weight: 500;font-size:15px;">Importe Neto</th>
             
         </thead>
         <tbody>
@@ -33,11 +33,11 @@
     <div class="row">
         <div class="col-md-7">
     <table class="table table-sm">
-        <p style="font-size: 18px;">Recibos de pago de la Factura:<span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
+        <p style="font-weight: 500;font-size:15px;margin-bottom: 3px;"><span style="text-decoration: underline;">Recibos de pago de la Factura:</span> <span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
         <thead class="table-success">
-            <th style="font-weight: 500;">Numero</th>
-            <th style="font-weight: 500;">Fecha</th>
-            <th style="font-weight: 500;">Importe Pagado</th>
+            <th style="font-weight: 500;font-size:15px;">Numero</th>
+            <th style="font-weight: 500;font-size:15px;">Fecha</th>
+            <th style="font-weight: 500;font-size:15px;">Importe Pagado</th>
         </thead>
         <tbody>
             {% for recibo in recibos %}
@@ -52,7 +52,7 @@
     <!-- {% for key, value in pagos.items %}
     <center>PAGOS: $ {{ value }}</center>
     {% endfor %} -->
-<div class="col-md-3" style="margin-top: 80px; margin-left: 30px;">
+<div class="col-md-3" style="margin-top: 60px; margin-left: 30px;">
     
     PAGOS TOTALES: $ {{ valor_pagado|floatformat:2 }}</br>
     {% if saldo > 0%}
