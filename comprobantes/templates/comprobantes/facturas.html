@@ -12,9 +12,12 @@
             <th style="font-weight: 500;">Numero</th>
             <th style="font-weight: 500;">Fecha</th>
             <th style="font-weight: 500;">Razón Social</th>
-            <th style="font-weight: 500;">Importe Bruto</th>
+            <th style="font-weight: 500;">I.Bruto</th>
             <th style="font-weight: 500;">IVA</th>
-            <th style="font-weight: 500;">Importe Neto</th>
+            <th style="font-weight: 500;">I.IVA</th>
+            <th style="font-weight: 500;">I.Neto</th>
+            <th style="font-weight: 500;">Pagos</th>
+            <th style="font-weight: 500;">Saldo</th>
             <th style="font-weight: 500;">Acciones</th>
         </thead>
         <tbody>
@@ -24,14 +27,17 @@
             <td style="font-size:13px;">{{ factura.razon_social }}</td>
             <td style="font-size:13px;">{{ factura.importe|floatformat:2}}</td>
             <td style="font-size:13px;">{{ factura.iva}}</td>
+            <td style="font-size:13px;">{{ factura.importe_iva|floatformat:2}}</td>
             <td style="font-size:13px;">{{ factura.importe_total|floatformat:2}}</td>
+            <td style="font-size:13px;"></td>
+            <td style="font-size:13px;"></td>
             <td style="font-size:13px;">
-                <a href="{% url 'recibos-factura' factura.id %}">ver pago</a>
-            </td>      
+                <a class="btn btn-success btn-sm" href="">Emitir Recibo</a>
+                <a class="btn btn-info btn-sm" href="{% url 'recibos-factura' factura.id %}">Ver Pagos</a>
+            </td>  
        </tbody>
             {% endfor %}
     </table>   
-        
     </div>
     {% else %}
     <p>No hay facturas ingresadas</p>

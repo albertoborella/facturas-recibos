@@ -11,9 +11,14 @@ class Factura(models.Model):
     updated = models.DateField(auto_now=True)
 
     @property
+    def importe_iva(self):
+        return self.importe * (self.iva/100)
+
+    @property
     def importe_total(self):
         return self.importe + (self.importe * self.iva/100)
-    
+
+         
     def __str__(self):
         return self.numero
 
@@ -27,14 +32,10 @@ class Recibo(models.Model):
     @property
     def importe_factura(self):
         return self.factura_id.importe_total
-    
-    @property
-    def saldo_factura(self):
-        return self.factura_id.importe_total - self.importe_pagado
 
-    @property
-    def saldo_final(self):
-        return self.saldo_factura - self.importe_pagado
+    # @property
+    # def saldo_final(self):
+    #     return self.saldo_factura - self.importe_pagado
     
     def __str__(self):
         return self.numero

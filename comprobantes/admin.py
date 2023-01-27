@@ -7,7 +7,7 @@ class FacturaAdmin(admin.ModelAdmin):
     ordering = ('-fecha',)
 
 class ReciboAdmin(admin.ModelAdmin):
-    list_display = ('numero','fecha','factura_id','importe_factura','importe_pagado','saldo_factura','saldo_final')
+    list_display = ('numero','fecha','factura_id','importe_factura','importe_pagado')
     #readonly_fields = ('created','updated')
     ordering = ('fecha',)
 

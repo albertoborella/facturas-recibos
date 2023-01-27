@@ -14,8 +14,6 @@
             <th style="font-weight: 500;">Factura</th>
             <th style="font-weight: 500;">Importe Factura</th>
             <th style="font-weight: 500;">Importe Pagado</th>
-            <th style="font-weight: 500;">Saldo Factura</th>
-            <th style="font-weight: 500;">Acciones</th>
         </thead>
         <tbody>
             {% for recibo in recibos %}
@@ -24,9 +22,6 @@
             <td style="font-size:13px;">{{ recibo.factura_id }}</td>
             <td style="font-size:13px;">{{ recibo.importe_factura|floatformat:2 }}</td>
             <td style="font-size:13px;">{{ recibo.importe_pagado|floatformat:2}}</td>
-            <td style="font-size:13px;">{{ recibo.saldo_factura|floatformat:2 }}</td>
-            <td style="font-size:13px;">
-            </td>      
        </tbody>
             {% endfor %}
     </table>
