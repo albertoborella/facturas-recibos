@@ -25,8 +25,14 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" style="color:beige" href="{% url 'home' %}">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color:beige" href="{% url 'facturas' %}">Facturas</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link" style="color:beige" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Facturas de Compra
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" style="font-weight: 500;font-size:15px;" href="{% url 'facturas-con-saldo' %}">Facturas con Saldo</a></li>
+                  <li><a class="dropdown-item" style="font-weight: 500;font-size:15px;" href="{% url 'facturas' %}">Todas las facturas</a></li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" style="color:beige" href="{% url 'recibos' %}">Recibos</a>

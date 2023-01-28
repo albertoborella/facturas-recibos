@@ -22,18 +22,29 @@ def recibos_factura(request, id):
     f = Factura.objects.get(id=id)
     recibos = f.recibos.all()
     qs_recibos_pago = Recibo.objects.filter(factura_id=id)
-    print(qs_recibos_pago)
     valor_pagado = 0
+    #imp_total_factura = f.importe_total
     for p in qs_recibos_pago:
         valor_pagado = valor_pagado + (p.importe_pagado)
     saldo = f.importe_total - valor_pagado
-    imp_total_factura = f.importe_total
+    if saldo <= 0:
+        f.estado = True
+        
+    
     contexto = {'f':f,
                 'recibos':recibos,
                 'valor_pagado':valor_pagado,
                 'saldo':saldo,
-                'imp_total_factura':imp_total_factura,}
+                #'imp_total_factura':imp_total_factura,
+                }
     return render(request, 'comprobantes/recibo-factura.html', contexto)
+
+def facturas_con_saldo(request):
+    facturas = Factura.objects.filter(estado=False)
+    contexto = {
+        'facturas':facturas
+    }
+    return render(request, 'comprobantes/facturas_con_saldo.html', contexto)
 
 
 
@@ -58,19 +69,4 @@ def recibos_factura(request, id):
     
 #     return render(request, 'comprobantes/recibo-factura.html', contexto)
 
-def recibos_factura(request, id):
-    f = Factura.objects.get(id=id)
-    recibos = f.recibos.all()
-    qs_recibos_pago = Recibo.objects.filter(factura_id=id)
-    print(qs_recibos_pago)
-    valor_pagado = 0
-    for p in qs_recibos_pago:
-        valor_pagado = valor_pagado + (p.importe_pagado)
-    saldo = f.importe_total - valor_pagado
-    imp_total_factura = f.importe_total
-    contexto = {'f':f,
-                'recibos':recibos,
-                'valor_pagado':valor_pagado,
-                'saldo':saldo,
-                'imp_total_factura':imp_total_factura,}
-    return render(request, 'comprobantes/recibo-factura.html', contexto)
+

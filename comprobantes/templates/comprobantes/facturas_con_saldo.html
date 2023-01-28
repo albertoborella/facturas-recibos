@@ -6,7 +6,7 @@
     <br>
     {% if facturas %}
     <table class="table table-sm table-hover">
-        <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras</h3>
+        <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras con Saldo</h3>
         <thead style="background-color: bisque;">
             <th style="font-weight: 500;font-size:15px;">Numero</th>
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
@@ -36,7 +36,7 @@
     </table>   
     </div>
     {% else %}
-     <center><p style="color: brown; font-size: 18px;">No hay facturas ingresadas</p></center>
+     <center><p style="color: brown; font-size: 18px;">No hay facturas impagas</p></center>
     {% endif %}
 </div>
 {% endblock %}

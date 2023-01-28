@@ -7,6 +7,7 @@ class Factura(models.Model):
     razon_social = models.CharField(max_length=50)
     importe = models.DecimalField(max_digits=10, decimal_places=2)
     iva = models.DecimalField(max_digits=4, decimal_places=2, default=21.0)
+    estado = models.BooleanField(default=True, verbose_name='Saldada')
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -18,7 +19,15 @@ class Factura(models.Model):
     def importe_total(self):
         return self.importe + (self.importe * self.iva/100)
 
-         
+    # @property
+    # def saldo_factura(self):
+    #     pagos = Recibo.objects.aggregate(pagos = Sum('importe_pagado'))
+    #     print(pagos)
+    #     for key, value in pagos.items:
+    #         pago = value
+    #     return self.importe_total-self.pago
+    
+             
     def __str__(self):
         return self.numero
 
@@ -32,10 +41,6 @@ class Recibo(models.Model):
     @property
     def importe_factura(self):
         return self.factura_id.importe_total
-
-    # @property
-    # def saldo_final(self):
-    #     return self.saldo_factura - self.importe_pagado
     
     def __str__(self):
         return self.numero
