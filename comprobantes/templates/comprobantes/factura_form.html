@@ -1,0 +1,16 @@
+{% extends 'comprobantes/base.html' %}
+
+{% block title %}|Factura Nueva %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-4">
+        <h1 style="font-size: 22px; font-weight: 700; color: rgb(59, 59, 59); margin-top: 40px; margin-bottom: 20px;">Registrar Nueva Factura</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-info" value="Registrar">
+        </form>
+    </div>
+</div>
+{% endblock %}

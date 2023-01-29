@@ -1,0 +1,19 @@
+{% extends 'comprobantes/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="card mx-auto" style="width: 20rem; margin-top: 50px;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Ingerse sus Credenciales</h5>
+          <br>
+          {{ form | crispy }}
+          <!-- <a class="card-link" href={% url 'home' %}>Inicio</a> -->
+          <!-- <a class="card-link" href={% url 'register' %}>Registrarse</a> -->
+          <button type="submit" class="btn btn-sm btn-primary float-end">Ingresar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

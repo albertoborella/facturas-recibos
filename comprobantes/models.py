@@ -6,7 +6,7 @@ class Factura(models.Model):
     fecha = models.DateField()
     razon_social = models.CharField(max_length=50)
     importe = models.DecimalField(max_digits=10, decimal_places=2)
-    iva = models.DecimalField(max_digits=4, decimal_places=2, default=21.0)
+    iva = models.DecimalField(max_digits=4, decimal_places=2, default=21.0, verbose_name='% IVA')
     estado = models.BooleanField(default=False, verbose_name='Pagada')
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)

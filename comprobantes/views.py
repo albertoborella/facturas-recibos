@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from django.db.models import Sum
-from django.views.generic import View
+from django.views.generic import View,CreateView
 from .models import Recibo, Factura
+from .forms import FacturaForm
 
 
 class HomeView(View):
@@ -12,6 +14,11 @@ class FacturaView(View):
     def get(self, request, *args, **kwargs):
         facturas = Factura.objects.all()
         return render(request, 'comprobantes/facturas.html', {'facturas':facturas })
+
+class FacturaCreateView(CreateView):
+    model = Factura
+    form_class = FacturaForm
+    success_url = reverse_lazy('facturas')
 
 class ReciboView(View):
     def get(self, request, *args, **kwargs):
