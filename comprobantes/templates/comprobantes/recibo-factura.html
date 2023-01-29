@@ -1,6 +1,5 @@
 {% extends 'comprobantes/base.html' %}
 
-
 {% block content %}
 <div class="container">
     <br>
@@ -18,11 +17,11 @@
         </thead>
         <tbody>
             <!-- <td style="font-size:13px;">{{ f.numero }}</td> -->
-            <td style="font-size:13px;">{{ f.fecha }}</td>
+            <td style="font-size:13px;">{{ f.fecha|date:'d/m/Y' }}</td>
             <td style="font-size:13px;">{{ f.razon_social }}</td>
-            <td style="font-size:13px;">$ {{ f.importe|floatformat:2}}</td>
+            <td style="font-size:13px;">$ {{ f.importe|floatformat:"2g"}}</td>
             <td style="font-size:13px;">{{ f.iva}} %</td>
-            <td style="font-size:15px; color: blue;">$ {{ f.importe_total|floatformat:2}}</td>
+            <td style="font-size:15px; color: blue;">$ {{ f.importe_total|floatformat:"2g"}}</td>
        </tbody>
     </table>   
     {% else %}
@@ -42,8 +41,8 @@
         <tbody>
             {% for recibo in recibos %}
             <td style="font-size:13px;">{{ recibo.numero }}</td>
-            <td style="font-size:13px;">{{ recibo.fecha }}</td>
-            <td style="font-size:13px;">{{ recibo.importe_pagado }}</td>
+            <td style="font-size:13px;">{{ recibo.fecha|date:'d/m/Y' }}</td>
+            <td style="font-size:13px;">$ {{ recibo.importe_pagado|floatformat:"2g" }}</td>
        </tbody>
             {% endfor %}
     </table>  
@@ -54,9 +53,12 @@
     {% endfor %} -->
 <div class="col-md-3" style="margin-top: 60px; margin-left: 30px;">
     
-    PAGOS TOTALES: $ {{ valor_pagado|floatformat:2 }}</br>
+    PAGOS REALIZADOS: $ {{ valor_pagado|floatformat:"2g" }}</br>
     {% if saldo > 0%}
-    SALDO A PAGAR: $ {{ saldo|floatformat:2 }} 
+    <div style="margin-top: 10px;">
+      <span style="text-decoration: underline;">SALDO A PAGAR:</span><span style="color: red;font-weight: bold;margin-left: 10px;">$ {{ saldo|floatformat:"2g" }}</span>
+    </div>
+     
     {% else %}
     <center style="margin-top: 20px; color: green; font-style: italic; text-decoration: underline;">
         LA FACTURA HA SIDO CANCELADA

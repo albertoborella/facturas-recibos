@@ -11,25 +11,25 @@
             <th style="font-weight: 500;font-size:15px;">Numero</th>
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
             <th style="font-weight: 500;font-size:15px;">Razón Social</th>
-            <th style="font-weight: 500;font-size:15px;">I.Bruto</th>
-            <th style="font-weight: 500;font-size:15px;">IVA</th>
-            <th style="font-weight: 500;font-size:15px;">I.IVA</th>
-            <th style="font-weight: 500;font-size:15px;">I.Neto</th>
-            <th style="font-weight: 500;font-size:15px;">Estado</th>
-            <th style="font-weight: 500;font-size:15px;">Acciones</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">I.Bruto</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">IVA</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">I.IVA</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">I.Neto</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">Estado</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">Acciones</th>
         </thead>
         <tbody>
             {% for factura in facturas %}
             <td style="font-size:13px;">{{ factura.numero }}</td>
-            <td style="font-size:13px;">{{ factura.fecha }}</td>
+            <td style="font-size:13px;">{{ factura.fecha|date:'d/m/Y'}}</td>
             <td style="font-size:13px;">{{ factura.razon_social }}</td>
-            <td style="font-size:13px;">$ {{ factura.importe|floatformat:2}}</td>
-            <td style="font-size:13px;">{{ factura.iva}} %</td>
-            <td style="font-size:13px;">$ {{ factura.importe_iva|floatformat:2}}</td>
-            <td style="font-size:13px;">$ {{ factura.importe_total|floatformat:2}}</td>
-            <td style="font-size:13px;">{{ factura.estado }}</td>
-            <td style="font-size:13px;">
-                <a class="btn btn-info btn-sm" href="{% url 'recibos-factura' factura.id %}">Ver Pagos</a>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">{{ factura.iva|floatformat:"2g"}} %</td>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe_iva|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe_total|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">{% if factura.estado == True %}<span style="color: green;">Cancelada</span>{% else %}<span style="color: red;">Tiene saldo</span>{% endif %}</td>
+            <td style="font-size:13px;text-align: end;">
+                <a style="font-size:13px;" href="{% url 'recibos-factura' factura.id %}">Ver Pagos</a>
             </td> 
        </tbody>
             {% endfor %}

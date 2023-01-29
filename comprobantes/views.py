@@ -29,7 +29,6 @@ def recibos_factura(request, id):
     saldo = f.importe_total - valor_pagado
     if saldo <= 0:
         f.estado = True
-        
     
     contexto = {'f':f,
                 'recibos':recibos,

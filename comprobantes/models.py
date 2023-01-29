@@ -7,7 +7,7 @@ class Factura(models.Model):
     razon_social = models.CharField(max_length=50)
     importe = models.DecimalField(max_digits=10, decimal_places=2)
     iva = models.DecimalField(max_digits=4, decimal_places=2, default=21.0)
-    estado = models.BooleanField(default=True, verbose_name='Saldada')
+    estado = models.BooleanField(default=False, verbose_name='Pagada')
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -17,16 +17,7 @@ class Factura(models.Model):
 
     @property
     def importe_total(self):
-        return self.importe + (self.importe * self.iva/100)
-
-    # @property
-    # def saldo_factura(self):
-    #     pagos = Recibo.objects.aggregate(pagos = Sum('importe_pagado'))
-    #     print(pagos)
-    #     for key, value in pagos.items:
-    #         pago = value
-    #     return self.importe_total-self.pago
-    
+        return self.importe + (self.importe * self.iva/100)  
              
     def __str__(self):
         return self.numero
@@ -35,8 +26,11 @@ class Factura(models.Model):
 class Recibo(models.Model):
     numero = models.CharField(max_length=15)
     fecha = models.DateField()
-    factura_id = models.ForeignKey(Factura,verbose_name='Nº Factura' ,related_name='recibos', on_delete=models.CASCADE)
+    factura_id = models.ForeignKey(Factura,verbose_name='Nº Factura' ,related_name='recibos',           on_delete=models.CASCADE)
     importe_pagado = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    class Meta:
+        ordering = ('fecha',)
 
     @property
     def importe_factura(self):
