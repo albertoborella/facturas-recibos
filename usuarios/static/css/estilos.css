@@ -38,11 +38,11 @@ body{
   li.nav-item{
     font-size: 14px;
   }
-  li.nav-item:hover{
+  /* li.nav-item:hover{
     font-family: cursive;
     text-decoration: underline;
     color: bisque;
-  }
+  } */
   /* a.saludo:hover{
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;

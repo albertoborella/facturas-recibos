@@ -48,7 +48,7 @@ def recibos_factura(request, id):
 def facturas_con_saldo(request):
     facturas = Factura.objects.filter(estado=False)
     contexto = {
-        'facturas':facturas
+        'facturas':facturas,
     }
     return render(request, 'comprobantes/facturas_con_saldo.html', contexto)
 
