@@ -4,9 +4,9 @@
 {% block content %}
 <div class="container">
     <br>
-    {% if facturas %}
+    {% if object_list %}
     <table class="table table-sm table-hover">
-        <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras</h3>
+        <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras Pagadas</h3>
         <thead style="background-color: bisque;">
             <th style="font-weight: 500;font-size:15px;">Numero</th>
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
@@ -19,7 +19,7 @@
             <th style="font-weight: 500;font-size:15px;text-align: end;">Acciones</th>
         </thead>
         <tbody>
-            {% for factura in facturas %}
+            {% for factura in object_list %}
             <td style="font-size:13px;">{{ factura.numero }}</td>
             <td style="font-size:13px;">{{ factura.fecha|date:'d/m/Y'}}</td>
             <td style="font-size:13px;">{{ factura.razon_social }}</td>
