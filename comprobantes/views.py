@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.views.generic import View,CreateView,ListView
 from .models import Recibo, Factura
-from .forms import FacturaForm
+from .forms import FacturaForm,ReciboForm
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
@@ -16,7 +16,7 @@ class FacturasListView(ListView):
 class FacturaCreateView(CreateView):
     model = Factura
     form_class = FacturaForm
-    success_url = reverse_lazy('facturas')
+    success_url = reverse_lazy('facturas-list')
 
 
 class FacturasPagas(ListView):
@@ -35,6 +35,13 @@ class ReciboView(View):
     def get(self, request, *args, **kwargs):
         recibos = Recibo.objects.all()
         return render(request, 'comprobantes/recibos.html', { 'recibos':recibos })
+    
+class ReciboCreate(CreateView):
+    model = Recibo
+    form_class = ReciboForm
+    success_url = reverse_lazy('facturas-list')
+
+
 
 def recibos_factura(request, id):
     

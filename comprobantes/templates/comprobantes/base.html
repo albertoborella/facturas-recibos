@@ -54,9 +54,9 @@
       {% if request.user.is_authenticated %}
       <!-- Aside -->
         <aside class="col-md-3 mt-3">
-            <div class="p-4 mt-4">
-              <div class="rounded" style="background-color: rgb(151, 196, 182);margin-top: 5px; padding-top: 10px; padding-bottom: 5px; padding-left: 15px; margin-bottom: 5px;">
-              <h5 class="fst-italic">Facturas de Compra</h5>
+            <div class="p-4 pt-0 mt-5">
+              <div class="rounded" style="background-color: rgb(151, 196, 182);margin-top: 5px; padding-top: 10px; padding-bottom: 5px;margin-bottom: 5px;">
+              <h5 class="fst-italic" style="color: white;text-align: center;">Facturas de Compra</h5>
               </div>
               <div class="list-group">
                 <a href="{% url 'facturas-list' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Emitidas</a>
@@ -67,20 +67,14 @@
             </div>
 
             <div class="p-4 pt-0 mt-0">
-              <div class="rounded" style="background-color: rgb(151, 196, 182);margin-top: 5px; padding-top: 10px; padding-bottom: 5px; padding-left: 15px; margin-bottom: 5px;">
-              <h5 class="fst-italic">Facturas de Ventas</h5>
+              <div class="rounded" style="background-color: rgb(151, 196, 182);margin-top: 5px; padding-top: 10px; padding-bottom: 5px;margin-bottom: 5px;">
+              <h5 class="fst-italic" style="color:white;text-align: center;">Facturas de Ventas</h5>
               </div>
               <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Emitidas</a>
                 <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Cobradas</a>
                 <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Pendientes de Cobro</a>
                 <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Registrar Nueva</a>
-              </div>
-            </div>
-
-            <div class="p-4 pt-1 mt-0">
-              <div class="rounded" style="background-color: rgb(151, 196, 182);margin-top: 5px; padding-top: 10px; padding-bottom: 5px; padding-left: 15px; margin-bottom: 10px;">
-              <a href="{% url 'recibos' %}"><h5 class="fst-italic" style="font-size: 20; font-style: italic; color: rgb(51, 51, 51);font-weight: 500;text-decoration:none;" >Recibos de Pago</h5></a>
               </div>
             </div>
         </aside>

@@ -1,12 +1,12 @@
 {% extends 'comprobantes/base.html' %}
 
-{% block title %}|Factura Nueva {% endblock %}
+{% block title %}|Nuevo Pago{% endblock %}
 
 {% block content %}
 <div class="container">
       <div class="row justify-content-md-center">
     <div class="col-4">
-        <h1 style="font-size: 22px; font-weight: 500; color: rgb(59, 59, 59); margin-top: 40px; margin-bottom: 20px;">Registrar Nueva Factura</h1>
+        <h1 style="font-size: 22px; font-weight: 500; color: rgb(59, 59, 59); margin-top: 40px; margin-bottom: 20px;">Registrar Nuevo Pago</h1>
         <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}

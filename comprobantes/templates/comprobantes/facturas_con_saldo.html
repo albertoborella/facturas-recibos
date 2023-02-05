@@ -18,7 +18,7 @@
             <th style="font-weight: 500;font-size:15px;text-align: end;">I.Neto</th>
             <!-- <th style="font-weight: 500;font-size:15px;text-align: end;">Saldo</th> -->
             <th style="font-weight: 500;font-size:15px;text-align: end;">Estado</th>
-            <th style="font-weight: 500;font-size:15px;text-align: end;">Acciones</th>
+            <th style="font-weight: 500;font-size:15px;text-align: center;">Acciones</th>
         </thead>
         <tbody>
             {% for factura in facturas %}
@@ -32,7 +32,7 @@
             <!-- <td style="font-size:13px;text-align: end;">$ {{ factura.saldo|floatformat:"2g"}}</td> -->
             <td style="font-size:13px;text-align: end;"> {% if factura.estado == True %}Pagada{% else %}<span style="color: red;">Tiene saldo</span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                <a style="font-size:13px;" href="{% url 'recibos-factura' factura.id %}">Ver Pagos</a>
+                <a style="font-size:13px;color: blue;" href="{% url 'recibos-factura' factura.id %}">Ver Pagos / Pagar</a>
             </td> 
        </tbody>
             {% endfor %}

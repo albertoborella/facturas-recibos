@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, FacturasListView, ReciboView, FacturaCreateView,FacturasPagas, recibos_factura, facturas_con_saldo
+from .views import HomeView, FacturasListView, ReciboView, ReciboCreate, FacturaCreateView,FacturasPagas, recibos_factura, facturas_con_saldo
 
 
 urlpatterns = [
@@ -10,5 +10,5 @@ urlpatterns = [
     path('facturas/con_saldo/', facturas_con_saldo, name='facturas-con-saldo'), # Done
     path('recibos-factura/<int:id>', recibos_factura, name='recibos-factura'), # Done
     path('recibos/', ReciboView.as_view(), name='recibos'), # Done
-    
+     path('recibo/nuevo/', ReciboCreate.as_view(), name='recibo-crear'),
 ]

@@ -13,7 +13,6 @@ class FacturaAdmin(admin.ModelAdmin):
 
 class ReciboAdmin(admin.ModelAdmin):
     list_display = ('numero','fecha','factura_id','importe_factura','importe_pagado')
-    #readonly_fields = ('created','updated')
     ordering = ('fecha',)
 
 admin.site.register(Proveedores,ProveedoresAdmin)

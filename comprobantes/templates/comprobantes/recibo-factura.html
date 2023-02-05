@@ -51,12 +51,13 @@
     <!-- {% for key, value in pagos.items %}
     <center>PAGOS: $ {{ value }}</center>
     {% endfor %} -->
-<div class="col-md-3" style="margin-top: 60px; margin-left: 30px;">
+<div class="col-md-3" style="margin-top: 60px; margin-left: 10px;">
     
-    PAGOS REALIZADOS:<br> $ {{ valor_pagado|floatformat:"2g" }}</br>
+    <span style="text-decoration: underline;">PAGOS REALIZADOS:</span><br><span style="margin-left: 20px;">$ {{ valor_pagado|floatformat:"2g" }}</span></br>
     {% if saldo > 0%}
     <div style="margin-top: 10px;">
-      <span style="text-decoration: underline;">SALDO A PAGAR:</span><br><span style="color: red;font-weight: bold;margin-left: 10px;">$ {{ saldo|floatformat:"2g" }}</span>
+      <span style="text-decoration: underline;">SALDO A PAGAR:</span><br><span style="color: red;font-weight: bold;margin-left: 20px;">$ {{ saldo|floatformat:"2g" }}</span><br><br>
+      <center><a  href="{% url 'recibo-crear' %}" class="btn btn-primary">Registrar nuevo pago</a></center>
     </div>
      
     {% else %}
@@ -66,7 +67,7 @@
     {% endif %}
     
     {% else %}
-    <p style="font-size: 18px; color: red; text-align: center;">No hay recibo de pago de esa factura</p>
+    <p style="font-size: 18px; color: red; text-align: center;">No hay registro de esa factura</p>
     {% endif %}
 </div>
 </div>

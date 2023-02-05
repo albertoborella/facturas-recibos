@@ -44,9 +44,9 @@ class Factura(models.Model):
 
 
 class Recibo(models.Model):
-    numero = models.CharField(max_length=15)
+    numero = models.CharField(max_length=15, verbose_name = 'Número de recibo')
     fecha = models.DateField()
-    factura_id = models.ForeignKey(Factura,verbose_name='Nº Factura' ,related_name='recibos',           on_delete=models.CASCADE)
+    factura_id = models.ForeignKey(Factura,verbose_name='Nº Factura apagar' ,related_name='recibos',           on_delete=models.CASCADE)
     importe_pagado = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:

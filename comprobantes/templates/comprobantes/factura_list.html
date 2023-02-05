@@ -16,7 +16,7 @@
             <th style="font-weight: 500;font-size:15px;text-align: end;">I.IVA</th>
             <th style="font-weight: 500;font-size:15px;text-align: end;">I.Neto</th>
             <th style="font-weight: 500;font-size:15px;text-align: end;">Estado</th>
-            <th style="font-weight: 500;font-size:15px;text-align: end;">Acciones</th>
+            <th style="font-weight: 500;font-size:15px;text-align: center;">Acciones</th>
         </thead>
         <tbody>
             {% for factura in object_list %}
@@ -27,9 +27,10 @@
             <td style="font-size:13px;text-align: end;">{{ factura.iva|floatformat:"2g"}} %</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_iva|floatformat:"2g"}}</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_total|floatformat:"2g"}}</td>
-            <td style="font-size:13px;text-align: end;">{% if factura.estado == True %}<span style="color: green;">Cancelada</span>{% else %}<span style="color: red;">Tiene saldo</span>{% endif %}</td>
+            <td style="font-size:13px;text-align: end;">{% if factura.estado == True %}<span style="color: green;">Pagada</span>{% else %}<span style="color: red;">Tiene saldo</span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                <a style="font-size:13px;" href="{% url 'recibos-factura' factura.id %}">Ver Pagos</a>
+                
+                <a style="font-size:13px;color: blue;" href="{% url 'recibos-factura' factura.id %}">{% if factura.estado == False %}Ver Pagos / Pagar{% else %}Ver Pagos{%endif%}</a>
             </td> 
        </tbody>
             {% endfor %}
