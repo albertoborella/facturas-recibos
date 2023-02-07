@@ -5,7 +5,7 @@
     <br>
     {% if f %}
     <table class="table table-sm table-hover">
-        <p style="font-weight: 500;font-size:15px;margin-bottom: 3px;"><span style="text-decoration: underline;">Factura Número:</span><span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
+        <p style="font-weight: 500;font-size:15px;margin-bottom: 3px;"><span style="text-decoration: underline;">Comprobante Número:</span><span style="margin-left: 10px; color: blue;">{{ f.numero }}</span></p>
         <thead style="background-color: bisque;">
             <!-- <th style="font-weight: 500;">Numero</th> -->
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
@@ -53,11 +53,11 @@
     {% endfor %} -->
 <div class="col-md-3" style="margin-top: 60px; margin-left: 10px;">
     
-    <span style="text-decoration: underline;">PAGOS REALIZADOS:</span><br><span style="margin-left: 20px;">$ {{ valor_pagado|floatformat:"2g" }}</span></br>
+    <span style="text-decoration: underline;">COBROS REALIZADOS:</span><br><span style="margin-left: 20px;">$ {{ valor_cobrado|floatformat:"2g" }}</span></br>
     {% if saldo > 0%}
     
     <div style="margin-top: 10px;">
-      <center style="text-decoration: underline;">SALDO A PAGAR:</center><br><span style="color: red;font-weight: bold;margin-left: 20px;">$ {{ saldo|floatformat:"2g" }}</span><br><br>
+      <center style="text-decoration: underline;">SALDO A COBRAR:</center><br><span style="color: red;font-weight: bold;margin-left: 20px;">$ {{ saldo|floatformat:"2g" }}</span><br><br>
       <center><a  href="{% url 'recibo-crear' %}" class="btn btn-primary">Registrar nuevo pago</a></center>
     </div>
      

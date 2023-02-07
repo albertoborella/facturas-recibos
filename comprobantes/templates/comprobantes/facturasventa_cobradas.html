@@ -1,0 +1,42 @@
+{% extends 'comprobantes/base.html' %}
+{% block title %}|Comprobantes Cobrados{% endblock %}
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if object_list %}
+    <table class="table table-sm table-hover">
+        <h3 style="font-size: 20px;text-decoration: underline;">Comprobantes de Venta Cobrados</h3>
+        <thead style="background-color: rgb(250, 246, 17);">
+            <th style="font-weight: 500;font-size:13px;">Numero</th>
+            <th style="font-weight: 500;font-size:13px;">Fecha</th>
+            <th style="font-weight: 500;font-size:13px;">Razón Social</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Importe Bruto</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">IVA</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Importe IVA</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Importe Neto</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Estado</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Acciones</th>
+        </thead>
+        <tbody>
+            {% for factura in object_list %}
+            <td style="font-size:13px;">{{ factura.numero }}</td>
+            <td style="font-size:13px;">{{ factura.fecha|date:'d/m/Y'}}</td>
+            <td style="font-size:13px;">{{ factura.razon_social }}</td>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">{{ factura.iva|floatformat:"2g"}} %</td>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe_iva|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">$ {{ factura.importe_total|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">{% if factura.estado == True %}<span style="color: green;"><i class="bi bi-check-circle-fill"></i></span>{% else %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
+            <td style="font-size:13px;text-align: end;">
+                <a href="{% url 'recibos-factura' factura.id %}"><button style="width: 80px;font-size: 12px;padding: 2px auto;">Ver Cobro</button></a>
+            </td> 
+       </tbody>
+            {% endfor %}
+    </table>   
+    </div>
+    {% else %}
+     <center><p style="color: brown; font-size: 18px;">No hay facturas ingresadas</p></center>
+    {% endif %}
+</div>
+{% endblock %}

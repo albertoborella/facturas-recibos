@@ -1,0 +1,54 @@
+{% extends 'comprobantes/base.html' %}
+{% block title %}|Facturas de Ventas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if object_list %}
+    <table class="table table-sm table-hover">
+        <h3 style="font-size: 20px;text-decoration: underline;">Todos los Comprobantes de Ventas</h3>
+        <thead style="background-color: rgb(250, 246, 17);">
+            <th style="font-weight: 500;font-size:13px;">Numero</th>
+            <th style="font-weight: 500;font-size:13px;">Fecha</th>
+            <th style="font-weight: 500;font-size:13px;">Cliente</th>
+            <th style="font-weight: 500;font-size:13px;">Categoría</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Cantidad</th>
+            <th style="font-weight: 500;font-size:13px;">Unidad</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Precio/Ud.</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Importe Bruto</th>
+            
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Importe Neto</th>
+            <th style="font-weight: 500;font-size:13px;text-align: end;">Estado</th>
+            <th style="font-weight: 500;font-size:13px;text-align: center;">Acciones</th>
+        </thead>
+        <tbody>
+            {% for facturaventa in object_list %}
+            <td style="font-size:13px;">{{ facturaventa.numero }}</td>
+            <td style="font-size:13px;">{{ facturaventa.fecha|date:'d/m/Y'}}</td>
+            <td style="font-size:13px;">{{ facturaventa.razon_social }}</td>
+            <td style="font-size:13px;">{{ facturaventa.categoria }}</td>
+            <td style="font-size:13px;text-align: end;">{{ facturaventa.cantidad }}</td>
+            <td style="font-size:13px;">{{ facturaventa.unidades }}</td>
+            <td style="font-size:13px;text-align:end;">$ {{facturaventa.precio_unitario|floatformat:"2g"}}</td>
+            <td style="font-size:13px;text-align: end;">$ {{ facturaventa.importe|floatformat:"2g"}}</td>
+            
+            <td style="font-size:13px;text-align: end;">$ {{ facturaventa.importe_total|floatformat:"2g"}}</td>
+            <td style="font-size:15px;text-align: end;">{% if facturaventa.estado == True %}<span style="color: green;"><i class="bi bi-check-circle-fill"></i></span>{% else %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
+            <td style="font-size:13px;text-align: end;">
+                <a style="font-size:15px;color: rgb(226, 81, 24);" href="{% url 'cobros-factura' facturaventa.id %}">
+                    {% if facturaventa.estado == False %}
+                    <button style="width: 80px;font-size: 12px;padding: 2px auto;">Cobrar</button>
+                    {% else %}
+                    <button style="width: 80px;font-size: 12px;padding: 2px auto;">Ver Cobros</button>
+                    {% endif %}
+                </a>
+            </td> 
+       </tbody>
+            {% endfor %}
+    </table>   
+    </div>
+    {% else %}
+     <center><p style="color: brown; font-size: 18px;">No hay facturas de ventas registradas</p></center>
+    {% endif %}
+</div>
+{% endblock %}

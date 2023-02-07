@@ -59,7 +59,7 @@
               <h5 class="fst-italic" style="color: white;text-align: center;">Facturas de Compra</h5>
               </div>
               <div class="list-group">
-                <a href="{% url 'facturas-list' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Emitidas</a>
+                <a href="{% url 'facturas-list' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Compras Registradas</a>
                 <a href="{% url 'facturas-pagas' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Pagas</a>
                 <a href="{% url 'facturas-con-saldo' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Pendientes de Pago</a>
                 <a href="{% url 'factura-nueva' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Registrar Nueva</a>
@@ -71,10 +71,10 @@
               <h5 class="fst-italic" style="color:white;text-align: center;">Facturas de Ventas</h5>
               </div>
               <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Emitidas</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Cobradas</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Pendientes de Cobro</a>
-                <a href="#" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Registrar Nueva</a>
+                <a href="{% url 'facturas-venta-list' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Ventas registradas</a>
+                <a href="{% url 'factura-venta-cobradas' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Todas las Cobradas</a>
+                <a href="{% url 'factura-venta-no-cobradas' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Pendientes de Cobro</a>
+                <a href="{% url 'factura-venta-nueva' %}" class="list-group-item list-group-item-action list-group-item-light" style="font-size: 14px; font-weight: 300;">Registrar Nueva</a>
               </div>
             </div>
         </aside>

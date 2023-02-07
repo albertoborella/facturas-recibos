@@ -1,49 +1,45 @@
 {% extends 'comprobantes/base.html' %}
-{% block title %}|Facturas Compra{% endblock %}
+
+{% block title %}|Ventas No Cobradas{% endblock %}
 
 {% block content %}
 <div class="container">
     <br>
-    {% if object_list %}
+    {% if facturas %}
     <table class="table table-sm table-hover">
-        <h3 style="font-size: 20px;text-decoration: underline;">Todas las Facturas de Compra Emitidas</h3>
+        <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras con Saldo</h3>
         <thead style="background-color: bisque;">
             <th style="font-weight: 500;font-size:15px;">Numero</th>
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
             <th style="font-weight: 500;font-size:15px;">Razón Social</th>
-            <th style="font-weight: 500;font-size:15px;text-align: end;">I.Bruto</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">Importe Bruto</th>
             <th style="font-weight: 500;font-size:15px;text-align: end;">IVA</th>
-            <th style="font-weight: 500;font-size:15px;text-align: end;">I.IVA</th>
-            <th style="font-weight: 500;font-size:15px;text-align: end;">I.Neto</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">Importe IVA</th>
+            <th style="font-weight: 500;font-size:15px;text-align: end;">Importe Neto</th>
+            <!-- <th style="font-weight: 500;font-size:15px;text-align: end;">Saldo</th> -->
             <th style="font-weight: 500;font-size:15px;text-align: end;">Estado</th>
             <th style="font-weight: 500;font-size:15px;text-align: center;">Acciones</th>
         </thead>
         <tbody>
-            {% for factura in object_list %}
+            {% for factura in facturas %}
             <td style="font-size:13px;">{{ factura.numero }}</td>
-            <td style="font-size:13px;">{{ factura.fecha|date:'d/m/Y'}}</td>
+            <td style="font-size:13px;">{{ factura.fecha|date:'d/m/Y' }}</td>
             <td style="font-size:13px;">{{ factura.razon_social }}</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe|floatformat:"2g"}}</td>
             <td style="font-size:13px;text-align: end;">{{ factura.iva|floatformat:"2g"}} %</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_iva|floatformat:"2g"}}</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_total|floatformat:"2g"}}</td>
-            <td style="font-size:15px;text-align: end;">{% if factura.estado == True %}<span style="color: green;"><i class="bi bi-check-circle-fill"></i></span>{% else %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
+            <!-- <td style="font-size:13px;text-align: end;">$ {{ factura.saldo|floatformat:"2g"}}</td> -->
+            <td style="font-size:13px;text-align: end;"> {% if factura.estado == False %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                
-                <a style="font-size:13px;color: blue;" href="{% url 'recibos-factura' factura.id %}">
-                    {% if factura.estado == False %}
-                    <button style="width: 70px;font-size:12px;padding: 2px auto;">Pagar</button> 
-                    {% else %}
-                    <button style="width: 70px;font-size:12px;padding: 2px auto;">Ver Pagos</button>
-                    {%endif%}
-                </a>
+                <a href="{% url 'recibos-factura' factura.id %}"><button style="width: 80px;font-size: 12px;padding: 2px auto;">Cobrar</button></a>
             </td> 
        </tbody>
             {% endfor %}
     </table>   
     </div>
     {% else %}
-     <center><p style="color: brown; font-size: 18px;">No hay facturas ingresadas</p></center>
+     <center><p style="color: brown; font-size: 18px;">No hay facturas impagas</p></center>
     {% endif %}
 </div>
 {% endblock %}

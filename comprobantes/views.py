@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.views.generic import View,CreateView,ListView
-from .models import Recibo, Factura
-from .forms import FacturaForm,ReciboForm
+from .models import Recibo, Factura, FacturaVenta,ReciboCobro
+from .forms import FacturaForm,ReciboForm,FacturaVentaForm
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
@@ -76,6 +76,60 @@ def facturas_con_saldo(request):
         'facturas':facturas,
     }
     return render(request, 'comprobantes/facturas_con_saldo.html', contexto)
+
+class FacturasVentaListView(ListView):
+    model = FacturaVenta
+
+
+class FacturaVentaCreateView(CreateView):
+    model = FacturaVenta
+    form_class = FacturaVentaForm
+    success_url = reverse_lazy('facturas-venta-list')
+
+
+class FacturasVentaCobradas(ListView):
+    model = FacturaVenta
+    template_name = 'comprobantes/facturasventa_cobradas.html'
+
+    def get_queryset(self):
+        return FacturaVenta.objects.filter(estado=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+def cobros_factura(request, id):
+    f = FacturaVenta.objects.get(id=id)
+    recibos = f.recibos_cobro.all()
+    qs_recibos_cobro = ReciboCobro.objects.filter(factura_id=id)
+    valor_cobrado = 0
+    imp_total_factura = f.importe_total
+    for p in qs_recibos_cobro:
+        valor_cobrado = valor_cobrado + (p.importe_cobrado)
+    saldo = f.importe_total - valor_cobrado
+    estado = False
+    if saldo == 0.0:
+        f.estado = True
+        f.save()
+    else:
+        f.estado = False
+        f.save()
+    contexto = {'f':f,
+                'recibos':recibos,
+                'valor_cobrado':valor_cobrado,
+                'saldo':saldo,
+                'imp_total_factura':imp_total_factura,
+                'estado':estado
+                }
+    return render(request, 'comprobantes/cobro-factura.html', contexto)
+
+
+def facturasventa_con_saldo(request):
+    facturas = FacturaVenta.objects.filter(estado=False)
+    contexto = {
+        'facturas':facturas,
+    }
+    return render(request, 'comprobantes/facturasventa_con_saldo.html', contexto)
 
 
 
