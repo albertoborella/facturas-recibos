@@ -68,7 +68,12 @@
     {% endif %}
     
     {% else %}
-    <p style="font-size: 18px; color: red; text-align: center;">No hay registro de esa factura</p>
+    <p style="font-size: 18px; color: red; text-align: center;">No hay registro de pago de esa factura</p>
+
+    <div style="margin-top: 10px;">
+        <center style="text-decoration: underline;">IMPORTE A PAGAR:<span style="color: red;font-weight: bold;margin-left: 20px;">$ {{ saldo|floatformat:"2g" }}</span></center><br><br>
+        <center><a  href="{% url 'recibo-crear' %}" class="btn btn-primary">Registrar Pago</a></center>
+    </div>
     {% endif %}
 </div>
 </div>

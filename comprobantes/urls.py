@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, FacturasListView, ReciboView, ReciboCreate, FacturaCreateView,FacturasPagas,FacturasVentaListView,FacturaVentaCreateView,FacturasVentaCobradas,facturasventa_con_saldo,recibos_factura, facturas_con_saldo,cobros_factura
+from .views import HomeView, FacturasListView, ReciboView, ReciboCreate, FacturaCreateView,FacturasPagas,FacturasVentaListView,FacturaVentaCreateView,FacturasVentaCobradas,CobranzasView,CobroCreate,facturasventa_con_saldo,recibos_factura, facturas_con_saldo,cobros_factura
 
 
 urlpatterns = [
@@ -16,4 +16,6 @@ urlpatterns = [
     path('factura-venta/cobradas/', FacturasVentaCobradas.as_view(), name='factura-venta-cobradas'),
     path('factura-venta/no-cobradas/', facturasventa_con_saldo, name='factura-venta-no-cobradas'),
     path('cobros-factura/<int:id>', cobros_factura, name='cobros-factura'),
+    path('cobranzas/', CobranzasView.as_view(), name='cobranzas'),
+    path('cobranza/nueva/', CobroCreate.as_view(), name='cobranza-nueva'),
 ]

@@ -57,6 +57,8 @@ MIDDLEWARE = [
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
+DATE_INPUT_FORMATS = ('%d/%m/%Y')
+
 ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [

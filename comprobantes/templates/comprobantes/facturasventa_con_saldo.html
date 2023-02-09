@@ -8,7 +8,7 @@
     {% if facturas %}
     <table class="table table-sm table-hover">
         <h3 style="font-size: 20px;text-decoration: underline;">Facturas de Compras con Saldo</h3>
-        <thead style="background-color: bisque;">
+        <thead style="background-color:rgb(250, 246, 17);">
             <th style="font-weight: 500;font-size:15px;">Numero</th>
             <th style="font-weight: 500;font-size:15px;">Fecha</th>
             <th style="font-weight: 500;font-size:15px;">Razón Social</th>
@@ -32,14 +32,14 @@
             <!-- <td style="font-size:13px;text-align: end;">$ {{ factura.saldo|floatformat:"2g"}}</td> -->
             <td style="font-size:13px;text-align: end;"> {% if factura.estado == False %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                <a href="{% url 'recibos-factura' factura.id %}"><button style="width: 80px;font-size: 12px;padding: 2px auto;">Cobrar</button></a>
+                <a href="{% url 'cobros-factura' factura.id %}"><button style="width: 80px;font-size: 12px;padding: 2px auto;">Cobrar</button></a>
             </td> 
        </tbody>
             {% endfor %}
     </table>   
     </div>
     {% else %}
-     <center><p style="color: brown; font-size: 18px;">No hay facturas impagas</p></center>
+     <center><p style="color: brown; font-size: 18px;">No hay Comprobantes de Cobro registrados</p></center>
     {% endif %}
 </div>
 {% endblock %}

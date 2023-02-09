@@ -33,9 +33,10 @@
                 <a style="font-size:13px;color: blue;" href="{% url 'recibos-factura' factura.id %}">
                     {% if factura.estado == False %}
                     <button style="width: 70px;font-size:12px;padding: 2px auto;">Pagar</button> 
-                    {% else %}
+                    {% endif%}
+                    {% if factura.estado == True %}
                     <button style="width: 70px;font-size:12px;padding: 2px auto;">Ver Pagos</button>
-                    {%endif%}
+                    {% endif%}
                 </a>
             </td> 
        </tbody>

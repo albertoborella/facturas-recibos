@@ -1,0 +1,30 @@
+{% extends 'comprobantes/base.html' %}
+{% block title %}|Cobranzas{% endblock %}
+{% block content %}
+<div class="container">
+    <br>
+    {% if recibos %}
+    <table class="table table-sm table-hover">
+        <h3 style="font-size: 20px;text-decoration: underline;">Cobranzas Realizados</h3>
+        <thead style="background-color: #d1e7dd">
+            <th style="font-weight: 500;font-size:15px;">Numero</th>
+            <th style="font-weight: 500;font-size:15px;">Fecha</th>
+            <th style="font-weight: 500;font-size:15px;">Comprobante</th>
+            <th style="font-weight: 500;font-size:15px;">Importe Factura</th>
+            <th style="font-weight: 500;font-size:15px;">Importe Pagado</th>
+        </thead>
+        <tbody>
+            {% for recibo in recibos %}
+            <td style="font-size:13px;">{{ recibo.numero }}</td>
+            <td style="font-size:13px;">{{ recibo.fecha }}</td>
+            <td style="font-size:13px;">{{ recibo.factura_id }}</td>
+            <td style="font-size:13px;">$ {{ recibo.importe_factura|floatformat:2 }}</td>
+            <td style="font-size:13px;">$ {{ recibo.importe_pagado|floatformat:2}}</td>
+       </tbody>
+            {% endfor %}
+    </table>
+    {% else %}
+    <center><p style="color: brown; font-size: 18px;">No hay Cobranzas Registradas</p></center>
+    {% endif %}
+</div>   
+{% endblock %}

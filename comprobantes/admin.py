@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria,Factura,Recibo,Proveedores,FacturaVenta,Cliente
+from .models import Categoria,Factura,Recibo,Proveedores,FacturaVenta,Cliente,ReciboCobro
 
 
 
@@ -21,10 +21,15 @@ class FacturaVentaAdmin(admin.ModelAdmin):
     list_display = ('numero','fecha','razon_social','categoria','cantidad','unidades','importe_total')
     ordering = ('-fecha',)
 
+class ReciboCobroAdmin(admin.ModelAdmin):
+    list_display = ('numero','fecha','factura_id','importe_factura','importe_cobrado')
+    ordering = ('-fecha',)
+
 admin.site.register(Categoria)
 admin.site.register(Cliente)
 admin.site.register(Proveedores,ProveedoresAdmin)
 admin.site.register(Factura,FacturaAdmin)
 admin.site.register(FacturaVenta,FacturaVentaAdmin)
 admin.site.register(Recibo,ReciboAdmin)
+admin.site.register(ReciboCobro,ReciboCobroAdmin)
 

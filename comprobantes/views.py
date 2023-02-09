@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.views.generic import View,CreateView,ListView
 from .models import Recibo, Factura, FacturaVenta,ReciboCobro
-from .forms import FacturaForm,ReciboForm,FacturaVentaForm
+from .forms import FacturaForm,ReciboForm,FacturaVentaForm,CobroForm
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
@@ -77,6 +77,7 @@ def facturas_con_saldo(request):
     }
     return render(request, 'comprobantes/facturas_con_saldo.html', contexto)
 
+#------------------------------------------------------VENTAS Y COBRANZAS-----------------------------------
 class FacturasVentaListView(ListView):
     model = FacturaVenta
 
@@ -85,6 +86,12 @@ class FacturaVentaCreateView(CreateView):
     model = FacturaVenta
     form_class = FacturaVentaForm
     success_url = reverse_lazy('facturas-venta-list')
+
+
+class CobranzasView(View):
+    def get(self, request, *args, **kwargs):
+        recibos = ReciboCobro.objects.all()
+        return render(request, 'comprobantes/cobros.html', { 'recibos':recibos })
 
 
 class FacturasVentaCobradas(ListView):
@@ -97,6 +104,14 @@ class FacturasVentaCobradas(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+
+class CobroCreate(CreateView):
+    model = ReciboCobro
+    form_class = CobroForm
+    success_url = reverse_lazy('facturas-venta-list')
+    
+
 
 def cobros_factura(request, id):
     f = FacturaVenta.objects.get(id=id)

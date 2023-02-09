@@ -30,9 +30,10 @@
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_iva|floatformat:"2g"}}</td>
             <td style="font-size:13px;text-align: end;">$ {{ factura.importe_total|floatformat:"2g"}}</td>
             <!-- <td style="font-size:13px;text-align: end;">$ {{ factura.saldo|floatformat:"2g"}}</td> -->
-            <td style="font-size:13px;text-align: end;"> {% if factura.estado == True %}Pagada{% else %}<span style="color: red;">Tiene saldo</span>{% endif %}</td>
+            <td style="font-size:13px;text-align: end;"> {% if factura.estado == True %}Pagada{% else %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                <a style="font-size:13px;color: blue;" href="{% url 'recibos-factura' factura.id %}">Ver Pagos / Pagar</a>
+                <a href="{% url 'recibos-factura' factura.id %}"><button style="width: 70px;font-size:12px;padding: 2px auto;">Pagar</button></a> 
+                <!-- <a style="font-size:13px;color: blue;" href="">Ver Pagos / Pagar</a> -->
             </td> 
        </tbody>
             {% endfor %}

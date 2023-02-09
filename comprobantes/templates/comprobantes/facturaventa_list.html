@@ -35,12 +35,12 @@
             <td style="font-size:13px;text-align: end;">$ {{ facturaventa.importe_total|floatformat:"2g"}}</td>
             <td style="font-size:15px;text-align: end;">{% if facturaventa.estado == True %}<span style="color: green;"><i class="bi bi-check-circle-fill"></i></span>{% else %}<span style="color: red;"><i class="bi bi-check2-circle"></i></span>{% endif %}</td>
             <td style="font-size:13px;text-align: end;">
-                <a style="font-size:15px;color: rgb(226, 81, 24);" href="{% url 'cobros-factura' facturaventa.id %}">
+                <a style="font-size:13px;color: blue;" href="{% url 'cobros-factura' facturaventa.id %}">
                     {% if facturaventa.estado == False %}
-                    <button style="width: 80px;font-size: 12px;padding: 2px auto;">Cobrar</button>
+                    <button style="width: 80px;font-size:12px;padding: 2px auto;">Cobrar</button> 
                     {% else %}
-                    <button style="width: 80px;font-size: 12px;padding: 2px auto;">Ver Cobros</button>
-                    {% endif %}
+                    <button style="width: 80px;font-size:12px;padding: 2px auto;">Ver Cobros</button>
+                    {%endif%}
                 </a>
             </td> 
        </tbody>
